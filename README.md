@@ -14,3 +14,8 @@ fn main() {
 - Build and run: `cargo run`
 - Check if code compiles without generating an executable: `cargo check`
 - Build for release: `cargo build --release`
+## crates
+- [crates.io](https://crates.io/)
+- Add crate in `Cargo.toml`
+- `cargo build`
+- `cargo update`
