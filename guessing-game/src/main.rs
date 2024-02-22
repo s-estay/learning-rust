@@ -1,8 +1,14 @@
 use std::io; // `std`: standard library
              // `io`: input/output library
+use rand::Rng; // add Rng trait
 
 fn main() {
-    println!("guess the number"); // macro that prints a string to the screen
+    println!("guess the number!"); // macro that prints a string to the screen
+    let secret_number = rand::thread_rng().gen_range(1..=100); // `rand::thread_rng` call the random number generator
+                                                               // method `gen_range` is defined by the Rng trait 
+                                                               // `gen_range argument = start..=end
+    println!("the secret number is: {secret_number}");
+    println!("input your guess"); 
     let mut guess = String::new(); // use `let` statement to create a variable
                                    // `let apples = 5;`
                                    // in Rust, variables are immutable by default
