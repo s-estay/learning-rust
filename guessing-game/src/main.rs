@@ -9,7 +9,6 @@ fn main() {
                                                                // method `gen_range` is defined by the Rng trait 
                                                                // `gen_range` argument = start..=end
                                                                // default type i32
-    println!("the secret number is: {secret_number}");
     println!("input your guess"); 
     let mut guess = String::new(); // use `let` statement to create a variable
                                    // `let apples = 5;`
@@ -42,11 +41,15 @@ fn main() {
                                         // `expect` will take the return value that Ok is holding and return that value
                                         // if you don’t call `expect`, the program will compile, but you’ll get a warning
                                         // the right way to suppress the warning is to actually write error-handling code
-    println!("you guessed: {guess}"); // when printing the value of a variable, the variable name can go inside the curly brackets
-                                      // `let x = 5;`
-                                      // `let y = 10;`
-                                      // `println!("x = {x} and y + 2 = {}", y + 2);`
-                                      // this code would print: x = 5 and y + 2 = 12
+
+        let guess: u32 = guess.trim().parse().expect("please type a number"); // shadow previous value of guess
+                                                                              // shadowing allow us to reuse a variable name
+                                                                              // shadowing is used when we want to convert a value from one type to another
+                                                                              // `trim` will eliminate whitespaces at the beginning and end
+                                                                              // `parse` converts a string to another type
+                                                                              // here we convert a string to u32
+                                                                              // `parse` return a Result type
+
     match guess.cmp(&secret_number) { // comparing guess with secret_number
                                       // it returns a variant of `Ordering`
                                       // `match` is used to decide what to do next based on which variant of Ordering was returned
