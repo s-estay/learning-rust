@@ -1,12 +1,14 @@
 use std::io; // `std`: standard library
              // `io`: input/output library
 use rand::Rng; // add Rng trait
+use std::cmp::Ordering; // `Ordering` type is an emun with variants `Less`, `Greater` and `Equal`
 
 fn main() {
     println!("guess the number!"); // macro that prints a string to the screen
     let secret_number = rand::thread_rng().gen_range(1..=100); // `rand::thread_rng` call the random number generator
                                                                // method `gen_range` is defined by the Rng trait 
-                                                               // `gen_range argument = start..=end
+                                                               // `gen_range` argument = start..=end
+                                                               // default type i32
     println!("the secret number is: {secret_number}");
     println!("input your guess"); 
     let mut guess = String::new(); // use `let` statement to create a variable
@@ -45,4 +47,18 @@ fn main() {
                                       // `let y = 10;`
                                       // `println!("x = {x} and y + 2 = {}", y + 2);`
                                       // this code would print: x = 5 and y + 2 = 12
+    match guess.cmp(&secret_number) { // comparing guess with secret_number
+                                      // it returns a variant of `Ordering`
+                                      // `match` is used to decide what to do next based on which variant of Ordering was returned
+                                      // `match` is made up of `arms`
+                                      // an `arm` is a pattern to match against
+                                      // example : guess = 50 and secret_number = 38
+                                      // `cmp` method will return `Ordering::Greater`
+                                      // `match` gets `Ordering::Greater` and check each arm's pattern
+                                      // the second arm's pattern match `match`
+                                      // the associated code will be executed
+        Ordering::Less => println!("too small"), 
+        Ordering::Greater => println!("too big"), 
+        Ordering::Equal => println!("you win!"), 
+    }
 }
