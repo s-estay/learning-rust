@@ -1,67 +1,22 @@
-use std::io; // `std`: standard library
-             // `io`: input/output library
-use rand::Rng; // add Rng trait
-use std::cmp::Ordering; // `Ordering` type is an emun with variants `Less`, `Greater` and `Equal`
+
+use std::io; 
+use rand::Rng; 
+use std::cmp::Ordering; 
 
 fn main() {
-    println!("guess the number!"); // macro that prints a string to the screen
-    let secret_number = rand::thread_rng().gen_range(1..=100); // `rand::thread_rng` call the random number generator
-                                                               // method `gen_range` is defined by the Rng trait 
-                                                               // `gen_range` argument = start..=end
-                                                               // default type i32
-    println!("input your guess"); 
-    let mut guess = String::new(); // use `let` statement to create a variable
-                                   // `let apples = 5;`
-                                   // in Rust, variables are immutable by default
-                                   // to make a variable mutable, we add `mut` before the variable name
-                                   // `String::new` is a function that returns a new instance of a string
-                                   // the `::new` function creates a new empty string
-    io::stdin() // call the `stdin` function from the `io` module
-                // this will allow us to handle user input
-                // without `use std::io` we can call stdin like this: `std::io::stdin()`
-        .read_line(&mut guess) // call the `read_line` method on the standard input handler
-                               // pass `&mut guess` as the argument to `read_line`
-                               // The & indicates that this argument is a reference
-                               // a reference a way to let multiple parts of your code access one piece of data,
-                               // without needing to copy that data into memory multiple times
-                               // references are immutable by default, hence `&mut guess` rather than `&guess`
-        .expect("failed to read line"); // `read_line` returns a Result value
-                                        // Result is an enumeration (enum)
-                                        // an enumeration is a type that can be in one of multiple possible states
-                                        // we call each possible state a variant
-                                        // Result’s variants are Ok and Err
-                                        // the Ok variant indicates the operation was successful,
-                                        // and inside Ok is the successfully generated value
-                                        // the Err variant means the operation failed,
-                                        // and Err contains information about how or why the operation failed
-                                        // `expect` is a method of Result
-                                        // if Result is an Err value, `expect` will cause the program to crash
-                                        // and display the message that you passed as an argument to expect
-                                        // if Result is an Ok value,
-                                        // `expect` will take the return value that Ok is holding and return that value
-                                        // if you don’t call `expect`, the program will compile, but you’ll get a warning
-                                        // the right way to suppress the warning is to actually write error-handling code
+    println!("guess the number!");
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+                                                               
+    loop {
+        println!("input your guess"); 
+        let mut guess = String::new();
+        io::stdin().read_line(&mut guess).expect("failed to read line");
+        let guess: u32 = guess.trim().parse().expect("please type a number");
 
-        let guess: u32 = guess.trim().parse().expect("please type a number"); // shadow previous value of guess
-                                                                              // shadowing allow us to reuse a variable name
-                                                                              // shadowing is used when we want to convert a value from one type to another
-                                                                              // `trim` will eliminate whitespaces at the beginning and end
-                                                                              // `parse` converts a string to another type
-                                                                              // here we convert a string to u32
-                                                                              // `parse` return a Result type
-
-    match guess.cmp(&secret_number) { // comparing guess with secret_number
-                                      // it returns a variant of `Ordering`
-                                      // `match` is used to decide what to do next based on which variant of Ordering was returned
-                                      // `match` is made up of `arms`
-                                      // an `arm` is a pattern to match against
-                                      // example : guess = 50 and secret_number = 38
-                                      // `cmp` method will return `Ordering::Greater`
-                                      // `match` gets `Ordering::Greater` and check each arm's pattern
-                                      // the second arm's pattern match `match`
-                                      // the associated code will be executed
-        Ordering::Less => println!("too small"), 
-        Ordering::Greater => println!("too big"), 
-        Ordering::Equal => println!("you win!"), 
+        match guess.cmp(&secret_number) { 
+            Ordering::Less => println!("too small"), 
+            Ordering::Greater => println!("too big"), 
+            Ordering::Equal => {println!("you win!"); break;} 
+        }
     }
 }
