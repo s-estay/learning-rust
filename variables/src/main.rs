@@ -10,4 +10,7 @@ fn main() {
     }
     let x = x + 1; // shadow variable x
     println!("the value of x is: {x}");
+
+    let spaces = "   "; // string type
+    let spaces = spaces.len(); // number type
 }
