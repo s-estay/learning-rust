@@ -70,7 +70,7 @@ fn main() {
 
 ### Shadowing
 - Definition : declare a new variable with the same name as a previous variable
-- By using let, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed
+- By using `let`, we can perform a few transformations on a value but have the variable be immutable after those transformations have been completed
 ```rust
 fn main() {
   let x = 1;
@@ -79,7 +79,7 @@ fn main() {
   println!("The value of x is: {x}"); // prints 2
 }
 ```
-- We can change the type of the value but reuse the same name
+- We can change the type of the value and reuse the same name
 ```rust
 fn main() {
   let abc = "abc";
