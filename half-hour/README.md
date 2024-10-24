@@ -1,4 +1,4 @@
-Following along (A half hour to learn Rust)[// https://fasterthanli.me/articles/a-half-hour-to-learn-rust].
+Following along [A half hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust).
 
 ```rust
 // signed integers   : i8, i16, i32, i64, i128 (bits)
