@@ -1,17 +1,46 @@
+## What is this?
+Notes, small test programs and resources related to my journey learning Rust.
 
-## Install Rust using rustup
-Install [rustup](https://rustup.rs), Rust's official toolchain manager. This will install (1) the Rust compiler [rustc](https://doc.rust-lang.org/rustc/what-is-rustc.html), and (2) the Rust package manager [cargo](https://doc.rust-lang.org/cargo/).
-
-Update `rustup` and check if everything is ok:
-
+## Install Rust
+Install [rustup](https://rustup.rs), Rust's toolchain manager. Installing Rust using `rustup` will also install `cargo` (package manager) and `rustc` (compiler). Update `rustup` like this:
 ```terminal
 rustup update
 rustc --version
-cargo --version
 ```
 
 ## IDE
-Get an IDE or text editor. I'll be using [Sublime Text](https://www.sublimetext.com) with the [Rust Enhanced](https://github.com/rust-lang/rust-enhanced) package to get extended support for Rust. [Here](https://rust-lang.github.io/rust-enhanced/) is a guide about how to install Rust Enhanced.
+Get an IDE or text editor. I'll be using [Zed](https://zed.dev).
+
+### Zed settings.json
+```json
+{
+  "theme": {
+    "mode": "system",
+    "dark": "Sandcastle",
+    "light": "One Light"
+  },
+
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "off",
+
+  "vim_mode": true,
+  "relative_line_numbers": true
+}
+```
+
+### Zed keymap.json (work in progress)
+```json
+[
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "jj": "vim::NormalBefore" // ESC
+    }
+  }
+]
+```
 
 ## hello-world
 - `mkdir hello-world`
@@ -91,3 +120,4 @@ fn main() {
 
 ## References
 - [The Rust Programming Language](https://doc.rust-lang.org/stable/book/title-page.html)
+- [A half-hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
