@@ -45,6 +45,35 @@ fn return_tuple() -> (char, char) {
   return pair;
 }
 
+// a pair of brackets declares a block, which has its own scope
+fn block() {
+  let x = "out";
+  {
+    let x = "in";
+    println!("{}", x);
+  }
+  println!("{}", x);
+}
+
+// equivalent to `let x = 3; return x;`
+fn block_tail() -> i16 {
+  let x = {
+    let a = 1;
+    let b = 2;
+    a + b // tail : what the whole block will evaluate to
+  };
+  return x;
+}
+
+// we don't need parenthesis around `2 > 1`
+fn conditionals_are_expressions() -> bool {
+  if 2 > 1 {
+    true
+  } else {
+    false
+  }
+}
+
 fn main() {
   println!("hello world");
   println!("{}", let_keyword());
@@ -55,4 +84,8 @@ fn main() {
 
   let (left, _) = return_tuple(); // throw away `right`
   println!("{}", left);
+
+  block();
+  println!("{}", block_tail());
+  println!("{}", conditionals_are_expressions());
 }
