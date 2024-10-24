@@ -36,7 +36,7 @@ Get an IDE or text editor. I'll be using [Zed](https://zed.dev).
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
-      "jj": "vim::NormalBefore" // ESC
+      "jj": "vim::NormalBefore"
     }
   }
 ]
